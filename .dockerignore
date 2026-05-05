@@ -1,0 +1,22 @@
+# Python
+**/__pycache__/
+**/*.py[cod]
+**/*.pyo
+**/.venv/
+
+# Environment files
+.env
+.envrc
+.env.example
+
+# Git
+.git/
+.gitignore
+
+# IDE / editor
+.vscode/
+.idea/
+
+# Docs
+README.md
+LICENSE
