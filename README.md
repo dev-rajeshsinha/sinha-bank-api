@@ -73,6 +73,18 @@ The API will be available at `http://localhost:8000`.
 
 ## 🐳 Docker
 
+### Option A: Pull prebuilt image from Docker Hub
+
+```bash
+docker pull rajeshsinha97/sinha-bank-api:latest
+```
+
+```bash
+docker run --rm --env-file .env -p 8000:8000 rajeshsinha97/sinha-bank-api:latest
+```
+
+### Option B: Build locally
+
 ### Build the image
 
 ```bash
@@ -82,8 +94,38 @@ docker build -t sinha-bank-api .
 ### Run the container
 
 ```bash
-docker run --env-file .env -p 8000:8000 sinha-bank-api
+docker run --rm --env-file .env -p 8000:8000 sinha-bank-api
 ```
+
+---
+
+## CI/CD
+
+This repository includes a GitHub Actions workflow at `.github/workflows/docker-publish.yml` that automatically builds and publishes the Docker image whenever code is pushed to the `main` branch.
+
+### Workflow Behavior
+
+- Trigger: `push` to `main`
+- Runner: `ubuntu-latest`
+- Image destination: `rajeshsinha97/sinha-bank-api:latest`
+
+### What the workflow does
+
+1. Checks out the repository source code
+2. Logs in to Docker Hub using GitHub Actions secrets
+3. Builds the Docker image from the root `Dockerfile`
+4. Pushes the latest image to the public Docker Hub repository
+
+### Required GitHub Secrets
+
+To make the workflow publish successfully, configure these repository secrets in GitHub:
+
+| Secret            | Purpose                                                  |
+| ----------------- | -------------------------------------------------------- |
+| `DOCKER_USERNAME` | Your Docker Hub username, for example `rajeshsinha97`    |
+| `DOCKER_TOKEN`    | A Docker Hub access token with permission to push images |
+
+Once configured, every push to `main` will publish an updated image to Docker Hub.
 
 ---
 
