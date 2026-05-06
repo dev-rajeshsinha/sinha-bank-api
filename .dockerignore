@@ -12,6 +12,7 @@
 # Git
 .git/
 .gitignore
+.github/
 
 # IDE / editor
 .vscode/
