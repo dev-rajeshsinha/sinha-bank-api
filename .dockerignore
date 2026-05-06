@@ -21,3 +21,6 @@
 # Docs
 README.md
 LICENSE
+
+# custom ignore rules
+aws*/
